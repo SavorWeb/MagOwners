@@ -7,7 +7,7 @@
 		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 		<meta name="viewport" content="initial-scale=1">
 
-		<title>{% block title %}Sassaparilla: Fiennes Edition{% endblock %}</title>
+		<title>{% block title %}Magnuson Hotels | Owners{% endblock %}</title>
 		{{ "screen.css" | asset_url | stylesheet_tag }}
 		{% block styles %}{% endblock %}		
 		<link rel="shortcut icon" type="image/ico" href="/favicon.ico" />
@@ -17,23 +17,39 @@
 
 	<body>
 
-		{% block header %}{% endblock %}
+		{% block header %}
+			{% include "header" %}
+		{% endblock %}
 
 		<div class="site-content">
 			{% block content %}{% endblock %}
 		</div>	
 
-		{% block footer %}{% endblock %}	
+		{% block footer %}
+			{% include "footer" %}
+		{% endblock %}	
 
 		<!-- TODO: Select version of jquery and link to CDN -->
 		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
 		{{ "responsive-nav.min.js" | asset_url | script_tag }}
+		{{ "swipe.min.js" | asset_url | script_tag }}
 		<script type="text/javascript">
 			$(document).ready(function(){
 		      
 		      var navigation = responsiveNav(".nav-collapse", {
 		        customToggle: "#nav-toggle"
 		      });
+
+		    var elem = document.getElementById('slider');
+			window.mySwipe = Swipe(elem, {
+			  // startSlide: 4,
+			  auto: 6000,
+			  // continuous: true,
+			  // disableScroll: true,
+			  // stopPropagation: true,
+			  // callback: function(index, element) {},
+			  // transitionEnd: function(index, element) {}
+			});
 
 			});
 		</script>

@@ -60,9 +60,12 @@ a {
 .pagehead {
 	background-color: $secondary;
 	@include clearfix;
+}
+
+.pullwidth {
+		margin: 0 -20px;
 	@include break($b) {
-
-
+		margin: auto;
 	}
 }
 
@@ -92,7 +95,7 @@ a {
 	height: 70px;
 	position: absolute;
 	@include break($a) {
-		height: 100px;
+		height: 50px;
 	}
 }
 
@@ -111,9 +114,10 @@ a {
 	background-color: $secondary;
 	clear: both;
 	text-align: center;
-	font-size: em-font(20px);
+	font-size: em-font(12px);
+	font-weight: lighter;
 	ul {
-		padding-top: 30px;
+		@include clearfix;
 		li a {
 			display: inline-block;
 			width: 100%;
@@ -130,6 +134,8 @@ a {
 	@include break($b) {
 		background-color: $grey;
 		clear: both;
+		margin: 0 -500%;
+  		padding: 0 500%;
 		ul {
 			padding-top: 0;
 			li {
@@ -137,9 +143,25 @@ a {
 				width: auto;
 				a {
 					width: auto;
+					padding: 20px 20px 16px;
 					color: $light;
+					border-bottom: 3px transparent solid;
+					display: block;
+					position: relative;
 					&:hover, &:active {
-						background-color: transparentize($light, 0.5);
+						&:after {
+							position: absolute;
+							bottom: -3px;
+							left: 42%;
+							content: "";
+							width: 0px;
+							height: 0px;
+							border-style: solid;
+							border-width: 0 10px 10px 10px;
+							border-color: transparent transparent $orange transparent;
+						}
+						// background-color: lighten($dark, 20%);
+						// border-bottom-color: $orange;
 						border-left-color: transparent;
 					}
 				}
@@ -148,6 +170,91 @@ a {
 	}
 }
 
+.slideshow {
+	background-color: $grey2;
+}
+
+.swipe {
+	@include break($a) {
+
+	}
+	@include break($b) {
+
+	}
+}
+
+.swipe-wrap {
+	margin-bottom: -5px;
+	@include break($a) {
+		img {}
+	}
+	@include break($b) {
+
+		img {
+			
+		}
+	}
+}
+
+.orangediv {
+	height: 15px;
+	border-top: $orange 15px solid;
+	margin-bottom: 30px;
+	.arrow {
+		position: relative;
+		left: -15px;
+		width: 0px;
+		height: 0px;
+		border-style: solid;
+		border-width: 15px 15px 0 15px;
+		border-color: $orange transparent transparent transparent;
+	}
+}
+
+.brandsigns {
+	text-align: center;
+	p {
+		width: 70%;
+		margin: 0 auto;
+	}
+	h2 {
+		color: $orange;
+	}
+}
+
+section {
+	@include clearfix;
+	clear: both;
+	margin-bottom: 20px;
+}
+
+.pagefoot {
+	@include grid_columns(2); // Two Column Grid
+	@include break($b) {
+		@include grid_columns(12); // Twelve Column Grid		
+	}
+}
+
+.footer-links {
+	clear: both;
+	width: 100%;
+	@include clearfix;
+	li {
+		float: left;
+		font-size: em-font(12px);
+		
+		a {
+			color: $grey;
+			@include link-active-styles {
+				color: $orange;
+			}
+		}
+		margin-right: 3px;
+		&:last-of-type {
+			margin-right: 0;
+		}
+	}
+}
 
 /* ::Print */
 /* ------------------------------------------------------------ */

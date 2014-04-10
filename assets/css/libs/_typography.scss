@@ -7,7 +7,7 @@
 // Fonts
 // ------------------------------------------------------------
 
-.font-body 					{  font-family: 'Open Sans', sans-serif, sans-serif; }
+.font-body 					{  font-family: 'Helvetica', Helvetica, Arial, sans-serif; }
 .font-var 					{  font-family: Georgia, serif; }
 
 
@@ -21,3 +21,25 @@ ol 													{ @include nobullet; }
 li 													{ line-height: inherit; }					
 strong, b 											{ font-weight: 700; }
 em, i, q 											{ font-style: italic; }
+
+
+h1 {
+	font-weight: bold;
+	font-size: em-font(23px);
+	color: $orange;
+	padding: 0 0 8px;
+}
+
+h2 {
+	font-weight: bold;
+}
+
+p {
+	margin-bottom: 1em;
+	font-size: em-font(12px);
+}
+
+small {
+	font-size: em-font(9px);
+	line-height: em-base(5px);
+}
