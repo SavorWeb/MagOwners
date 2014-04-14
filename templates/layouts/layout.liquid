@@ -31,27 +31,44 @@
 
 		<!-- TODO: Select version of jquery and link to CDN -->
 		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+		{{ "jquery.validate.min.js" | asset_url | script_tag }}
+		{{ "jquery.placeholder.min.js" | asset_url | script_tag }}
+		{{ "jquery.form.min.js" | asset_url | script_tag }}
 		{{ "responsive-nav.min.js" | asset_url | script_tag }}
 		{{ "swipe.min.js" | asset_url | script_tag }}
 		<script type="text/javascript">
 			$(document).ready(function(){
 		      
-		      var navigation = responsiveNav(".nav-collapse", {
-		        customToggle: "#nav-toggle"
-		      });
+				var navigation = responsiveNav(".nav-collapse", {
+					customToggle: "#nav-toggle"
+				});
 
-		    var elem = document.getElementById('slider');
-			window.mySwipe = Swipe(elem, {
-			  // startSlide: 4,
-			  auto: 6000,
-			  // continuous: true,
-			  // disableScroll: true,
-			  // stopPropagation: true,
-			  // callback: function(index, element) {},
-			  // transitionEnd: function(index, element) {}
-			});
+			    var elem = document.getElementById('slider');
+				window.mySwipe = Swipe(elem, {
+				  auto: 6000,
+				});
 
 			});
+		</script>
+		<script>
+		$(function(){
+			$('#contact').validate({
+			submitHandler: function(form) {
+			    $(form).ajaxSubmit({
+			    url: 'process.php',
+			    success: function() {
+			    $('#contact').hide();
+			    $('#contact-form').append("<p class='thanks'>Thanks! Your request has been sent.</p>")
+			    }
+			    });
+			    }
+			});         
+		});
+		</script>
+		<script>
+		if (!Modernizr.input.placeholder){
+		      $('input[placeholder], textarea[placeholder]').placeholder();
+		}
 		</script>
 		{{ "script.js" | asset_url | script_tag }}
 

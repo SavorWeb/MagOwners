@@ -296,6 +296,20 @@ a:not(> img) {
   word-wrap: break-word;
 }
 
+.btn {
+  display: block;
+  padding: 8px;
+  border: 1px #e87d1e solid;
+}
+
+ul {
+  margin: 10px 0;
+}
+ul li {
+  list-style-type: square;
+  margin-left: 17px;
+}
+
 /* ::Import styles */
 /* ------------------------------------------------------------ */
 .font-body, body {
@@ -340,6 +354,7 @@ h1 {
 
 h2 {
   font-weight: bold;
+  margin-bottom: 0.5em;
 }
 
 p {
@@ -1049,6 +1064,9 @@ input[type="checkbox"]:focus {
   overflow: hidden;
   *zoom: 1;
 }
+.pagehead .row {
+  margin-bottom: 0;
+}
 
 .pullwidth {
   margin: 0 -20px;
@@ -1119,6 +1137,14 @@ input[type="checkbox"]:focus {
   }
 }
 
+.footer-links {
+  margin: 0;
+}
+.footer-links li {
+  margin: 0;
+  list-style-type: none;
+}
+
 .nav-collapse {
   overflow: hidden;
   *zoom: 1;
@@ -1131,6 +1157,11 @@ input[type="checkbox"]:focus {
 .nav-collapse ul {
   overflow: hidden;
   *zoom: 1;
+  margin: 0;
+}
+.nav-collapse ul li {
+  margin: 0;
+  list-style-type: none;
 }
 .nav-collapse ul li a {
   display: inline-block;
@@ -1219,6 +1250,21 @@ input[type="checkbox"]:focus {
 
 .slideshow {
   background-color: #1a1617;
+  position: relative;
+}
+.slideshow .row {
+  margin-bottom: 0;
+}
+.slideshow h1 {
+  width: 100%;
+  box-shadow: inset 0px -40px 70px -30px #000000;
+  color: white;
+  position: absolute;
+  padding: 20px 20px;
+  bottom: 0px;
+  left: 0px;
+  font-weight: lighter;
+  text-shadow: 0 0 5px #000;
 }
 
 .swipe-wrap {
@@ -1258,6 +1304,83 @@ section {
   margin-bottom: 20px;
 }
 
+.wrap {
+  max-width: 100%;
+}
+.lt-ie9 .wrap {
+  float: right;
+}
+@media screen and (min-width: 640px) {
+  .wrap {
+    float: right;
+  }
+}
+
+.row {
+  margin-bottom: 35px;
+}
+.row hr {
+  border-top: 1px solid #cccccc;
+  margin: 25px 0 45px;
+}
+.row img {
+  max-width: 100%;
+}
+.row .row__colspaced {
+  margin-bottom: 20px;
+}
+.row .row__colspaced div {
+  border-left: 1px #cccccc solid;
+  padding-right: 18px;
+}
+
+.calc {
+  background-color: #cccccc;
+}
+.calc h2 {
+  text-transform: uppercase;
+  background-color: #1a1617;
+  color: white;
+  padding: 10px;
+}
+.calc form {
+  padding: 10px;
+}
+.calc input {
+  width: 100%;
+  margin: 5px 0;
+}
+.calc .output {
+  margin-top: 5px;
+  padding: 10px;
+  background-color: #3f3f3f;
+  color: white;
+}
+.calc .output h3 {
+  text-transform: uppercase;
+  font-size: 0.8125em;
+}
+
+.examples img {
+  margin-bottom: 15px;
+}
+.examples p {
+  margin: 15px 0;
+}
+.examples h3 {
+  color: #e87d1e;
+}
+.examples div {
+  border-left: 0px transparent solid;
+}
+
+.pagefoot {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  border-top: 1px #cccccc solid;
+}
 .pagefoot .colspan2-1 {
   width: 50%;
 }
@@ -1562,6 +1685,72 @@ section {
 }
 .footer-links li:last-of-type {
   margin-right: 0;
+}
+
+/*-------------------------------------
+FORM CORE
+------------------------------------------*/
+form#contact fieldset {
+  border: 0;
+  background-color: #fff;
+  width: 290px;
+  text-align: left;
+}
+
+form#contact input[type="text"], input[type="url"],
+input[type="email"], input[type="tel"], textarea {
+  margin: 3px 0 0 0;
+  padding: 6px;
+  width: 260px;
+  font-family: arial, sans-serif;
+  font-size: 12px;
+  border: 1px solid #ccc;
+}
+
+form#contact textarea {
+  width: 275px;
+  height: 150px;
+}
+
+form#contact label {
+  display: block;
+  font-size: 13px;
+  color: #666;
+  margin-top: 10px;
+  font-weight: bold;
+}
+
+form#contact label.error {
+  width: 270px;
+  margin: 3px 0 0 0;
+  display: block;
+  color: #cf0101;
+  font-size: 11px;
+  text-align: right;
+}
+
+form#contact .placeholder {
+  color: #aaa;
+}
+
+form#contact .button {
+  display: inline-block;
+  margin: 15px 0 0 0;
+  padding: 5px 15px 5px 15px;
+  background-color: #ff9e00;
+  border: none;
+  color: #fff;
+}
+
+form#contact .button:hover {
+  background-color: #fc8500;
+  cursor: pointer;
+}
+
+form#contact .button:active {
+  margin-top: 16px;
+  background-color: #f08004;
+  cursor: pointer;
 }
 
 /* ::Print */

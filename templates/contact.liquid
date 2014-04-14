@@ -1,0 +1,59 @@
+{% block content %}
+
+{% include 'orangebar' %}
+
+<div class="row">
+
+<h1>Contact Magnuson Hotels, the world's largest independent hotel group.</h1>
+<div class="colspan12-4 as-grid">
+
+<h2>Hotel owners needing representation:</h2>
+<ul>
+	<li>Tel: 866.904.1309 / Fax: 509.744.0364</li>
+	<li>UK: 0.800.014.8132</li>
+	<li>email: <a href="mailto:info@magnusonworldwide.com">info@magnusonworldwide.com</a></li>
+</ul>
+<p>
+<h2>Corporate Contact Information and Media Inquiries:</h2>
+<p>	Magnuson Hotels <br>
+	525 East Mission Avenue, Spokane, WA 99202<br>
+	Tel: 866.904.1309 / Fax: 509.744.0364<br>
+	UK: 0.800.014.8132<br>
+	email: <a href="mailto:info@magnusonworldwide.com">info@magnusonworldwide.com</a><br>
+</p>
+</div>
+<div class="colspan12-8 as-grid with-gutter">
+	<h2>Get a free Quote</h2>
+
+
+<div id="contact-form">	
+
+<form id="contact" method="post" action="process.php">
+<fieldset>	
+
+<label for="name">Name</label>
+<input type="text" name="name" placeholder="Full Name" title="Enter your name" class="required">
+
+<label for="email">E-mail</label>
+<input type="email" name="email" placeholder="yourname@domain.com" title="Enter your e-mail address" class="required email">
+
+<label for="phone">Phone</label>
+<input type="tel" name="phone" placeholder="ex. (555) 555-5555">
+
+<label for="website">Website</label>
+<input type="url" name="url" placeholder="http://">
+
+<label for="message">Question/Comment</label>
+<textarea name="message"></textarea>
+
+<input type="submit" name="submit" class="button" id="submit" value="Send Message" />
+
+</fieldset>
+</form>
+
+</div><!-- /end #contact-form -->
+
+
+</div>
+</div>
+{% endblock %}
