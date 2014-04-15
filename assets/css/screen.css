@@ -1744,6 +1744,10 @@ section {
   }
 }
 
+input, textarea, button {
+  border-radius: 0;
+}
+
 .footer-links {
   clear: both;
   width: 100%;
@@ -1783,11 +1787,13 @@ input[type="email"], input[type="tel"], textarea {
   font-family: arial, sans-serif;
   font-size: 12px;
   border: 1px solid #ccc;
+  border-radius: 0;
 }
 
 form#contact textarea {
   width: 275px;
   height: 150px;
+  border-radius: 0;
 }
 
 form#contact label {

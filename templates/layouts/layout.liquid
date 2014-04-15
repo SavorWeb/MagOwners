@@ -5,7 +5,7 @@
 	<head>
 		<meta charset="utf-8">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-		<meta name="viewport" content="initial-scale=1">
+		<meta name="viewport" content="initial-scale=1, user-scalable=no">
 
 		<title>{% block title %}Magnuson Hotels | Owners{% endblock %}</title>
 		{{ "screen.css" | asset_url | stylesheet_tag }}
@@ -17,21 +17,21 @@
 		{{ "jquery.validate.min.js" | asset_url | script_tag }}
 		{{ "jquery.placeholder.min.js" | asset_url | script_tag }}
 		{{ "jquery.form.min.js" | asset_url | script_tag }}
-		<script>
-
-			$('#contact').validate({
-			submitHandler: function(form) {
-			    $(form).ajaxSubmit({
-			    url: 'process.php',
-			    success: function() {
-			    $('#contact').hide();
-			    $('#contact-form').append("<p class='thanks'>Thanks! Your request has been sent.</p>")
-			    }
-			    });
-			    }
-			});  
-
-		</script>
+<!--		<script>
+			$(function(){
+				$('#contact').validate({
+				submitHandler: function(form) {
+				    $(form).ajaxSubmit({
+				    url: 'process.php',
+				    success: function() {
+				    $('#contact').hide();
+				    $('#contact-form').append("<p class='thanks'>Thanks! Your request has been sent.</p>")
+				    }
+				    });
+				    }
+				});
+			});
+		</script>-->
 	<script type="text/javascript">
 	var brand=-1;
 	
