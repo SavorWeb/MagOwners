@@ -1138,6 +1138,22 @@ input[type="checkbox"]:focus {
   }
 }
 
+.cta-arrow {
+  margin-top: 50px;
+  margin-bottom: 20px;
+}
+.cta-arrow h2 {
+  text-align: right;
+  font-size: 1.25em;
+  font-weight: lighter;
+  margin-right: 60px;
+  margin-top: 5px;
+}
+.cta-arrow img {
+  float: right;
+  width: 50px;
+}
+
 .homelink {
   z-index: 6;
   height: 70px;
@@ -1392,7 +1408,7 @@ section {
   color: white;
   padding: 10px;
 }
-.calc form {
+.calc #content {
   padding: 10px;
 }
 .calc input {
@@ -1813,6 +1829,137 @@ form#contact .button:active {
   margin-top: 16px;
   background-color: #f08004;
   cursor: pointer;
+}
+
+/*------------CALCULATOR STYLES------------*/
+/* GLOBALS */
+::selection {
+  background: transparent;
+}
+
+::-moz-selection {
+  background: transparent;
+}
+
+#dd {
+  margin-bottom: 5px;
+}
+
+.savings {
+  font-size: 2.1875em;
+}
+
+.wrapper-demo {
+  margin: 60px 0 0 0;
+  *zoom: 1;
+  font-weight: 400;
+}
+
+.wrapper-demo:after {
+  clear: both;
+  content: "";
+  display: table;
+}
+
+/* DEMO 5 */
+.wrapper-dropdown-5 {
+  /* Size & position */
+  position: relative;
+  margin: 0 auto;
+  padding: 3px 10px;
+  /* Styles */
+  background: #fff;
+  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+  outline: none;
+}
+
+.wrapper-dropdown-5:after {
+  /* Little arrow */
+  content: "";
+  width: 0;
+  height: 0;
+  position: absolute;
+  top: 50%;
+  right: 15px;
+  margin-top: -3px;
+  border-width: 6px 6px 0 6px;
+  border-style: solid;
+  border-color: #999999 transparent;
+}
+
+.wrapper-dropdown-5 .dropdown {
+  position: absolute;
+  top: 100%;
+  margin-top: 0;
+  background-color: rgba(255, 255, 255, 0.96);
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  border-top: none;
+  border-bottom: none;
+  list-style: none;
+  left: -999999999px;
+  overflow: hidden;
+  width: 100%;
+}
+
+.wrapper-dropdown-5 .dropdown li {
+  margin: 0;
+  text-indent: 10px;
+}
+
+.wrapper-dropdown-5 .dropdown li a {
+  display: block;
+  text-decoration: none;
+  color: #333;
+  padding: 10px 0;
+  transition: all 0.3s ease-out;
+  border-bottom: 1px solid #e6e8ea;
+}
+
+.wrapper-dropdown-5 .dropdown li:last-of-type a {
+  border: none;
+}
+
+.wrapper-dropdown-5 .dropdown li i {
+  margin-right: 5px;
+  color: inherit;
+  vertical-align: middle;
+}
+
+/* Hover state */
+.wrapper-dropdown-5 .dropdown li:hover a {
+  color: #e87d1e;
+  border-bottom: 2px #e87d1e solid;
+}
+
+/* Active state */
+.wrapper-dropdown-5.active {
+  background: #e87d1e;
+  box-shadow: none;
+  border-bottom: none;
+  color: white;
+  z-index: 5;
+}
+
+.wrapper-dropdown-5.active:after {
+  border-color: #333333 transparent;
+}
+
+.wrapper-dropdown-5.active .dropdown {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+  left: 0;
+}
+
+/* No CSS3 support: none */
+.formField {
+  font-family: 'Roboto', Helvetica, Arial, sans-serif;
+  font-weight: 100px;
+  width: 180px;
+  margin: 8px 0;
+  border: 0px;
+  font-size: 14px;
+  background-color: #fff;
+  padding: 3px 10px;
 }
 
 /* ::Print */
