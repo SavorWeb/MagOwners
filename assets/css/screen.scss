@@ -53,6 +53,29 @@ ul {
 	}
 }
 
+blockquote {
+	width: 100%;
+	margin: 20px 0;
+	text-align: center;
+	color: $light;
+	@include break($b) {
+		width: 40%;
+		float: right;
+		margin: 20px;
+	}
+	background-color: $grey2;
+	font-size: em-font(20px);
+	padding: 30px;
+	line-height: 25px;
+	font-weight: lighter;
+	b {
+		color: $orange;
+		display: block;
+		font-size: em-font(25px);
+		margin: 10px 0;
+	}
+}
+
 /* ::Import styles */
 /* ------------------------------------------------------------ */
 
@@ -174,7 +197,10 @@ ul {
 				width: auto;
 				a {
 					width: auto;
-					padding: 20px 20px 16px;
+					padding: 20px 4px 16px;
+					@include break($d) {
+						padding: 20px 20px 16px;
+					}
 					color: $light;
 					border-bottom: 3px transparent solid;
 					display: block;
@@ -295,7 +321,9 @@ section {
 		div {
 			border-left: 1px $grey3 solid;
 			padding-right: 18px;
-
+		}
+		div:first-of-type {
+			border-left: 0px $grey3 solid;
 		}
 	}
 }
@@ -328,6 +356,12 @@ section {
 }
 
 .examples {
+	.as-grid {
+		margin-bottom: 15px;
+	}
+	.pullup {
+		margin-top: -80px;
+	}
 	img {
 		margin-bottom: 15px;
 	}
@@ -337,8 +371,15 @@ section {
 	h3 {
 		color: $orange;
 	}
-	div {
+	.row__colspaced div {
 		border-left: 0px transparent solid;
+	}
+	&.bordered {
+		border-top: 1px $grey3 solid;
+		border-bottom: 1px $grey3 solid;
+	}
+	&.bordered .row__colspaced {
+		padding: 40px 0 20px;
 	}
 }
 

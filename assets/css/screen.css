@@ -310,6 +310,36 @@ ul li {
   margin-left: 17px;
 }
 
+blockquote {
+  width: 100%;
+  margin: 20px 0;
+  text-align: center;
+  color: white;
+  background-color: #1a1617;
+  font-size: 1.25em;
+  padding: 30px;
+  line-height: 25px;
+  font-weight: lighter;
+}
+.lt-ie9 blockquote {
+  width: 40%;
+  float: right;
+  margin: 20px;
+}
+@media screen and (min-width: 640px) {
+  blockquote {
+    width: 40%;
+    float: right;
+    margin: 20px;
+  }
+}
+blockquote b {
+  color: #e87d1e;
+  display: block;
+  font-size: 1.5625em;
+  margin: 10px 0;
+}
+
 /* ::Import styles */
 /* ------------------------------------------------------------ */
 .font-body, body {
@@ -1190,11 +1220,19 @@ input[type="checkbox"]:focus {
 }
 .lt-ie9 .nav-collapse ul li a {
   width: auto;
-  padding: 20px 20px 16px;
+  padding: 20px 4px 16px;
   color: white;
   border-bottom: 3px transparent solid;
   display: block;
   position: relative;
+}
+.lt-ie9 .lt-ie9 .nav-collapse ul li a {
+  padding: 20px 20px 16px;
+}
+@media screen and (min-width: 980px) {
+  .lt-ie9 .nav-collapse ul li a {
+    padding: 20px 20px 16px;
+  }
 }
 .lt-ie9 .nav-collapse ul li a:hover, .lt-ie9 .nav-collapse ul li a:active {
   border-left-color: transparent;
@@ -1226,11 +1264,14 @@ input[type="checkbox"]:focus {
   }
   .nav-collapse ul li a {
     width: auto;
-    padding: 20px 20px 16px;
+    padding: 20px 4px 16px;
     color: white;
     border-bottom: 3px transparent solid;
     display: block;
     position: relative;
+  }
+  .lt-ie9 .nav-collapse ul li a {
+    padding: 20px 20px 16px;
   }
   .nav-collapse ul li a:hover, .nav-collapse ul li a:active {
     border-left-color: transparent;
@@ -1245,6 +1286,11 @@ input[type="checkbox"]:focus {
     border-style: solid;
     border-width: 0 10px 10px 10px;
     border-color: transparent transparent #e87d1e transparent;
+  }
+}
+@media screen and (min-width: 640px) and (min-width: 980px) {
+  .nav-collapse ul li a {
+    padding: 20px 20px 16px;
   }
 }
 
@@ -1333,6 +1379,9 @@ section {
   border-left: 1px #cccccc solid;
   padding-right: 18px;
 }
+.row .row__colspaced div:first-of-type {
+  border-left: 0px #cccccc solid;
+}
 
 .calc {
   background-color: #cccccc;
@@ -1361,6 +1410,12 @@ section {
   font-size: 0.8125em;
 }
 
+.examples .as-grid {
+  margin-bottom: 15px;
+}
+.examples .pullup {
+  margin-top: -80px;
+}
 .examples img {
   margin-bottom: 15px;
 }
@@ -1370,8 +1425,15 @@ section {
 .examples h3 {
   color: #e87d1e;
 }
-.examples div {
+.examples .row__colspaced div {
   border-left: 0px transparent solid;
+}
+.examples.bordered {
+  border-top: 1px #cccccc solid;
+  border-bottom: 1px #cccccc solid;
+}
+.examples.bordered .row__colspaced {
+  padding: 40px 0 20px;
 }
 
 .pagefoot {
