@@ -26,32 +26,49 @@
 	<h2>Get a free Quote</h2>
 
 
-<div id="contact-form">	
+			<div id="the-form">
 
-<form id="contact" method="post" action="process.php">
-<fieldset>	
+		        <?php if(isset($emailSent) && $emailSent == true) { ?>
+		            <p class="info">Your email was sent. Huzzah!</p>
+		        <?php } else { ?>
 
-<label for="name">Name</label>
-<input type="text" name="name" placeholder="Full Name" title="Enter your name" class="required">
-
-<label for="email">E-mail</label>
-<input type="email" name="email" placeholder="yourname@domain.com" title="Enter your e-mail address" class="required email">
-
-<label for="phone">Phone</label>
-<input type="tel" name="phone" placeholder="ex. (555) 555-5555">
-
-<label for="website">Website</label>
-<input type="url" name="url" placeholder="http://">
-
-<label for="message">Question/Comment</label>
-<textarea name="message"></textarea>
-
-<input type="submit" name="submit" class="button" id="submit" value="Send Message" />
-
-</fieldset>
-</form>
-
-</div><!-- /end #contact-form -->
+		        <div id="contact-form">
+		          <?php if(isset($hasError) || isset($captchaError) ) { ?>
+	                    <p class="alert">Error submitting the form</p>
+	                <?php } ?>
+		        
+		          <form id="contact-us" action="process.php" method="post">
+		            <div class="formblock">
+		              <label class="screen-reader-text">Name</label>
+		              <input type="text" name="contactName" id="contactName" value="<?php if(isset($_POST['contactName'])) echo $_POST['contactName'];?>" class="txt requiredField" placeholder="Name:" />
+		              <?php if($nameError != '') { ?>
+		                <br /><span class="error"><?php echo $nameError;?></span> 
+		              <?php } ?>
+		            </div>
+		                        
+		            <div class="formblock">
+		              <label class="screen-reader-text">Email</label>
+		              <input type="text" name="email" id="email" value="<?php if(isset($_POST['email']))  echo $_POST['email'];?>" class="txt requiredField email" placeholder="Email:" />
+		              <?php if($emailError != '') { ?>
+		                <br /><span class="error"><?php echo $emailError;?></span>
+		              <?php } ?>
+		            </div>
+		                        
+		            <div class="formblock">
+		              <label class="screen-reader-text">Message</label>
+		               <textarea name="comments" id="commentsText" class="txtarea requiredField" placeholder="Message:"><?php if(isset($_POST['comments'])) { if(function_exists('stripslashes')) { echo stripslashes($_POST['comments']); } else { echo $_POST['comments']; } } ?></textarea>
+		              <?php if($commentError != '') { ?>
+		                <br /><span class="error"><?php echo $commentError;?></span> 
+		              <?php } ?>
+		            </div>
+		                        
+		              <button name="submit" type="submit" class="subbutton">Send Email</button>
+		              <input type="hidden" name="submitted" id="submitted" value="true" />
+		          </form>     
+		        </div>
+		        
+		      <?php } ?><!-- End #contact -->
+			</div>
 
 
 </div>

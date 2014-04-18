@@ -14,24 +14,6 @@
 		<link rel="shortcut icon" type="image/ico" href="/favicon.ico" />
 		<script src="//cdnjs.cloudflare.com/ajax/libs/modernizr/2.7.1/modernizr.min.js"></script>
 		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-		{{ "jquery.validate.min.js" | asset_url | script_tag }}
-		{{ "jquery.placeholder.min.js" | asset_url | script_tag }}
-		{{ "jquery.form.min.js" | asset_url | script_tag }}
-		<script>
-			$(function(){
-				$('#contact').validate({
-				submitHandler: function(form) {
-				    $(form).ajaxSubmit({
-				    url: 'process.php',
-				    success: function() {
-				    $('#contact').hide();
-				    $('#contact-form').append("<p class='thanks'>Thanks! Your request has been sent.</p>")
-				    }
-				    });
-				    }
-				});
-			});
-		</script>
 	<script type="text/javascript">
 	var brand=-1;
 	
@@ -268,6 +250,43 @@
 			e.preventDefault();
 		});
 
+		</script>
+			<!-- FORM SCRIPT -->
+		<script type="text/javascript">
+		  <!--//--><![CDATA[//><!--
+		  $(document).ready(function() {
+		    $('form#contact-us').submit(function() {
+		      $('form#contact-us .error').remove();
+		      var hasError = false;
+		      $('.requiredField').each(function() {
+		        if($.trim($(this).val()) == '') {
+		          var labelText = $(this).prev('label').text();
+		          $(this).parent().append('<span style="display: block;" class="error">You forgot to enter your '+labelText+'.</span>');
+		          $(this).addClass('inputError');
+		          hasError = true;
+		        } else if($(this).hasClass('email')) {
+		          var emailReg = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
+		          if(!emailReg.test($.trim($(this).val()))) {
+		            var labelText = $(this).prev('label').text();
+		            $(this).parent().append('<span class="error">Sorry! You\'ve entered an invalid '+labelText+'.</span>');
+		            $(this).addClass('inputError');
+		            hasError = true;
+		          }
+		        }
+		      });
+		      if(!hasError) {
+		        var formInput = $(this).serialize();
+		        $.post($(this).attr('action'),formInput, function(data){
+		          $('form#contact-us').slideUp("fast", function() {          
+		            $(this).before('<p>Thanks for the message! We\'ll get back to you as soon as we can.</p>');
+		          });
+		        });
+		      }
+		      
+		      return false; 
+		    });
+		  });
+		  //-->!]]>
 		</script>
 		{{ "script.js" | asset_url | script_tag }}
 
