@@ -1,4 +1,4 @@
-<div class="calc">
+<!-- <div class="calc">
 	<h2>Savings Calculator</h2>
 	<form action="">
 		<input type="text">
@@ -11,4 +11,61 @@
 			$
 		</div>
 	</form>
-</div>
+</div> -->
+
+<div class="calc" id="calcWrap">
+	<h2>Savings Calculator</h2>
+    	<div id="content">
+            <div id="variablesCont">
+                <div id="dd" class="wrapper-dropdown-5" tabindex="1">
+					<span id="dd_text">Your Brand</span>
+					<ul class="dropdown">
+						<li><a href="#" onClick="selectOption(0);">Choice</a></li>
+						<!--li><a href="#" onClick="selectOption(1);">IHG</a></li-->
+						<li><a href="#" onClick="selectOption(2);">Wyndham</a></li>
+						<li><a href="#" onClick="selectOption(3);">Best Western</a></li>
+						<!--li><a href="#" onClick="selectOption(4);">Magnuson Hotels</a></li-->
+						<!--li><a href="#" onClick="selectOption(5);">NexRez</a></li-->
+						<!--li><a href="#" onClick="selectOption(6);">InnPoints</a></li-->
+						<!--li><a href="#" onClick="selectOption(7);">InnLink (Fixed)</a></li-->
+						<!--li><a href="#" onClick="selectOption(8);">InnLink (%)</a></li-->
+						<!--li><a href="#" onClick="selectOption(9);">Genares</a></li-->
+						<li><a href="#" onClick="selectOption(10);">Hampton</a></li>
+						<li><a href="#" onClick="selectOption(11);">Baymont</a></li>
+						<li><a href="#" onClick="selectOption(12);">Ramada</a></li>
+						<li><a href="#" onClick="selectOption(13);">Howard johnson</a></li>
+					</ul>
+				</div><!--dd-->
+                
+                <div id="form1">
+                     <input name="Rooms" id="Rooms" class="formField" type="text" value="Rooms" style="font-size:18px;color:#666666" onFocus="textboxFocus(this, 'Rooms');" onBlur="textboxBlur(this, 'Rooms');" onKeyDown="calcSavings();" onKeyUp="calcSavings();"/>
+                </div>
+                
+                <div id="form1">
+                     <input name="ADR" id="ADR" class="formField" type="text" value="ADR" style="font-size:18px;color:#666666" onFocus="textboxFocus(this, 'ADR');" onBlur="textboxBlur(this, 'ADR');" onKeyDown="calcSavings();" onKeyUp="calcSavings();"/>
+                </div>
+                
+                <div id="form1">
+                     <input name="OCC" id="OCC" class="formField" type="text" value="Occ%" style="font-size:18px;color:#666666" onFocus="textboxFocus(this, 'Occ%');" onBlur="textboxBlur(this, 'Occ%');" onKeyDown="calcSavings();" onKeyUp="calcSavings();"/>
+                </div>
+            </div><!--variablesCont-->
+            
+            <div id="result">
+                <div id="resultHead"></div>
+                	<div id="resultCont">
+                        <div class="savings saveDollar" id="saveDollar">
+                            <script type="text/javascript">
+								var saveDollar = document.getElementById("saveDollar");
+								saveDollar.innerHTML = "$";
+							</script>
+                        </div>
+                        <div class="savings savePercent" id="savePercent">
+							<script type="text/javascript">
+                            var savPercent = document.getElementById("savePercent");
+							savePercent.innerHTML = "%";
+							</script>
+                        </div> 
+                    </div><!--resultCont-->
+            </div><!--result-->
+		</div><!--content-->
+    </div><!--calcWrap-->

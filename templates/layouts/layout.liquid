@@ -3,16 +3,189 @@
 <!--[if IE 9 ]> <html lang="en-GB" class="no-js ie9"> <![endif]-->
 <!--[if (gt IE 9)|!(IE)]><!--> <html lang="en-GB" class="no-js"> <!--<![endif]-->
 	<head>
+		<!-- This site was built by Ryan Maskell at SavorWeb (www.SavorWeb.com). The process to work on this site involves using a software called Mixture (www.mixture.io), and is templated and globalized using the liquid template language. Style is written in SCSS natively (www.sass-lang.com). -->
 		<meta charset="utf-8">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-		<meta name="viewport" content="initial-scale=1">
+		<meta name="viewport" content="initial-scale=1, user-scalable=no">
 
 		<title>{% block title %}Magnuson Hotels | Owners{% endblock %}</title>
 		{{ "screen.css" | asset_url | stylesheet_tag }}
 		{% block styles %}{% endblock %}		
 		<link rel="shortcut icon" type="image/ico" href="/favicon.ico" />
-		<!-- TODO: Download a custom build of modernizer to suit the project -->
 		<script src="//cdnjs.cloudflare.com/ajax/libs/modernizr/2.7.1/modernizr.min.js"></script>
+		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+	<script type="text/javascript">
+	var brand=-1;
+	
+	var data = {
+		0: { brand:'Choice',			roomCount:'',misc:3785,	initialFeePerRoom:500,	initialFeeMin:50000,	royaltyFee:.0565,	marketingFee:.0385,	reservationFee:0	},
+		1: { brand:'IHG',				roomCount:'',misc:3609,	initialFeePerRoom:500,	initialFeeMin:50000,	royaltyFee:.06,		marketingFee:.03,	reservationFee:0 	},
+		2: { brand:'Wyndham',			roomCount:'',misc:3188,	initialFeePerRoom:350,	initialFeeMin:35000,	royaltyFee:.055,	marketingFee:.038,	reservationFee:0 	},
+		3: { brand:'Best Western',		roomCount:'',misc:229,	initialFeePerRoom:550,	initialFeeMin:55000,	royaltyFee:482.71,	marketingFee:134.64,reservationFee:5110 },
+		4: { brand:'Magnuson Hotels',	roomCount:'',misc:0,	initialFeePerRoom:0,	initialFeeMin:5000,		royaltyFee:0,		marketingFee:1,		reservationFee:0 	},
+		5: { brand:'NexRez',			roomCount:'',misc:0,	initialFeePerRoom:0,	initialFeeMin:0,		royaltyFee:0,		marketingFee:0,		reservationFee:.1 	},
+		6: { brand:'InnPoints',			roomCount:'',misc:0,	initialFeePerRoom:0,	initialFeeMin:0,		royaltyFee:0,		marketingFee:0,		reservationFee:.048 },
+		7: { brand:'InnLink (Fixed)',	roomCount:'',misc:0,	initialFeePerRoom:0,	initialFeeMin:0,		royaltyFee:0,		marketingFee:0,		reservationFee:.084 },
+		8: { brand:'InnLink (Percent)',	roomCount:'',misc:0,	initialFeePerRoom:0,	initialFeeMin:0,		royaltyFee:0,		marketingFee:0,		reservationFee:.067 },
+		9: { brand:'Genares',			roomCount:'',misc:0,	initialFeePerRoom:0,	initialFeeMin:0,		royaltyFee:0,		marketingFee:0,		reservationFee:.057 },
+		10: { brand:'Hampton',			roomCount:'',misc:3609,	initialFeePerRoom:650,	initialFeeMin:65000,	royaltyFee:.06,		marketingFee:.04,	reservationFee:0 	},
+		11: { brand:'Baymont',			roomCount:'',misc:3188,	initialFeePerRoom:260,	initialFeeMin:26000,	royaltyFee:.05,		marketingFee:.02,	reservationFee:.015 },
+		12: { brand:'Ramada',			roomCount:'',misc:3188,	initialFeePerRoom:360,	initialFeeMin:36000,	royaltyFee:.04,		marketingFee:.02,	reservationFee:.02 	},
+		13: { brand:'Howard Johnson',	roomCount:'',misc:3188,	initialFeePerRoom:360,	initialFeeMin:36000,	royaltyFee:.04,		marketingFee:.025,	reservationFee:.02 	}
+	}
+	
+	function textboxFocus(tb, defaultText)
+	{
+		if(tb.value == defaultText) { tb.value = ''; }
+	}
+	
+	function textboxBlur(tb, defaultText)
+	{
+		if(tb.value == '') { tb.value = defaultText; }
+	}
+	
+	function calcSavings()
+	{
+		// make sure we have valid data entered on the form
+		var savingsDollars;
+		var savingsPercent;
+		var saveDollar = document.getElementById("saveDollar");
+		var savePercent = document.getElementById("savePercent");
+		var errorCount = 0;
+		var rooms = document.getElementById("Rooms").value;
+		var adr = document.getElementById("ADR").value;
+		var occ = document.getElementById("OCC").value;
+
+		if(brand < 0 || brand > 13) { errorCount++; }
+		if(rooms <= 0 || rooms == "Rooms" || rooms == "") { errorCount++; }
+		if(adr < 0 || adr == "ADR" || adr == "") { errorCount++; }
+		if(occ < 0 || occ > 100 || occ == "Occ%" || occ == "") { errorCount++; }
+
+		if(errorCount == 0)
+		{
+			var rev,rev2=0;
+			var brandRebate=0;
+			var misc;
+			misc = data[brand]['misc']*rooms;
+			var initialFeePerRoom=0; // this is hard coded in the spreadsheet as blank
+			var initialFeeMin=data[brand]['initialFeeMin'],initialFeeMin2=495; // these values are hard coded in the spreadsheet
+			var royaltyFee=0;
+			var marketingFee=0,marketingFee2;
+			marketingFee2 = data[4]['marketingFee']*rooms*12;
+			var reservationFee=0,reservationFee2=0;
+			var netRev,netRev2;
+			
+			rev = rooms*adr*(occ/100)*365;
+			//alert('rev = ' + rev);
+			
+			rev2 = rooms*adr*((occ/100)+.045)*365;
+			//alert('rev2 = ' + rev2);
+			
+			brandRebate = rooms*adr*0.0252*365*0.15*0.1*2;
+			//alert('brandRebate = ' + brandRebate);
+			
+			if(brand == 3) { royaltyFee = data[brand]['royaltyFee']*rooms; } else { royaltyFee = data[brand]['royaltyFee']*rev; }
+			
+			if(brand == 3) { marketingFee = data[brand]['marketingFee']*rooms; } else { marketingFee = data[brand]['marketingFee']*rev; }
+			
+			if(brand == 3) { reservationFee = data[brand]['reservationFee']; } else { reservationFee = data[brand]['reservationFee']*rev; }
+			
+			//reservationFee2 = rev2*.045*.15;
+			
+			var test = misc+initialFeePerRoom+initialFeeMin+royaltyFee+marketingFee+reservationFee;
+			
+			netRev = rev-(misc+initialFeePerRoom+initialFeeMin+royaltyFee+marketingFee+reservationFee);
+			netRev2 = (rev2+brandRebate)-(initialFeeMin2+marketingFee2+reservationFee2);
+			//alert('netRev = ' + netRev);
+			//alert('newRev2 = ' + netRev2);
+			
+			savingsDollars = netRev-netRev2;
+			savingsPercent = (savingsDollars/netRev2)*100;
+			savingsDollars = Math.abs(savingsDollars);
+			savingsPercent = Math.abs(savingsPercent);
+			
+			saveDollar.innerHTML = "$" + savingsDollars.formatMoney(0);
+			savePercent.innerHTML = savingsPercent.toFixed(1) + "%";
+		}
+		else
+		{
+			saveDollar.innerHTML = "$";
+			savePercent.innerHTML = "%";
+		}
+	}
+	
+	function selectOption(ind)
+	{
+		brand = ind;
+		var saveDollar = document.getElementById("saveDollar");
+		var savePercent = document.getElementById("savePercent");
+		var ddtext = document.getElementById("dd_text");
+		var savingsDollars;
+		var savingsPercent;
+		
+		switch(ind)
+		{
+			case 0:
+				ddtext.innerHTML = "Choice";
+				break;
+			case 1:
+				ddtext.innerHTML = "IHG";
+				break;
+			case 2:
+				ddtext.innerHTML = "Wyndham";
+				break;
+			case 3:
+				ddtext.innerHTML = "Best Western";
+				break;
+			case 4:
+				ddtext.innerHTML = "Magnuson Hotels";
+				break;
+			case 5:
+				ddtext.innerHTML = "NexRez";
+				break;
+			case 6:
+				ddtext.innerHTML = "InnPoints";
+				break;
+			case 7:
+				ddtext.innerHTML = "InnLink (Fixed)";
+				break;
+			case 8:
+				ddtext.innerHTML = "InnLink (%)";
+				break;
+			case 9:
+				ddtext.innerHTML = "Genares";
+				break;
+			case 10:
+				ddtext.innerHTML = "Hampton";
+				break;
+			case 11:
+				ddtext.innerHTML = "Baymont";
+				break;
+			case 12:
+				ddtext.innerHTML = "Ramada";
+				break;
+			case 13:
+				ddtext.innerHTML = "Howard Johnson";
+				break;
+			default:
+				ddtext.innerHTML = "Your Brand";
+		}
+		calcSavings();
+	}
+	
+	Number.prototype.formatMoney = function(c, d, t)
+	{
+		var n = this, 
+		c = isNaN(c = Math.abs(c)) ? 2 : c, 
+		d = d == undefined ? "." : d, 
+		t = t == undefined ? "," : t, 
+		s = n < 0 ? "-" : "", 
+		i = parseInt(n = Math.abs(+n || 0).toFixed(c)) + "", 
+		j = (j = i.length) > 3 ? j % 3 : 0;
+		return s + (j ? i.substr(0, j) + t : "") + i.substr(j).replace(/(\d{3})(?=\d)/g, "$1" + t) + (c ? d + Math.abs(n - i).toFixed(c).slice(2) : "");
+	};
+	
+</script>
 	</head>
 
 	<body>
@@ -30,45 +203,90 @@
 		{% endblock %}	
 
 		<!-- TODO: Select version of jquery and link to CDN -->
-		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-		{{ "jquery.validate.min.js" | asset_url | script_tag }}
-		{{ "jquery.placeholder.min.js" | asset_url | script_tag }}
-		{{ "jquery.form.min.js" | asset_url | script_tag }}
 		{{ "responsive-nav.min.js" | asset_url | script_tag }}
 		{{ "swipe.min.js" | asset_url | script_tag }}
 		<script type="text/javascript">
-			$(document).ready(function(){
-		      
-				var navigation = responsiveNav(".nav-collapse", {
-					customToggle: "#nav-toggle"
-				});
 
-			    var elem = document.getElementById('slider');
-				window.mySwipe = Swipe(elem, {
-				  auto: 6000,
-				});
-
+			var navigation = responsiveNav(".nav-collapse", {
+				customToggle: "#nav-toggle"
 			});
-		</script>
-		<script>
-		$(function(){
-			$('#contact').validate({
-			submitHandler: function(form) {
-			    $(form).ajaxSubmit({
-			    url: 'process.php',
-			    success: function() {
-			    $('#contact').hide();
-			    $('#contact-form').append("<p class='thanks'>Thanks! Your request has been sent.</p>")
-			    }
-			    });
-			    }
-			});         
-		});
-		</script>
-		<script>
+
+		    var elem = document.getElementById('slider');
+			window.mySwipe = Swipe(elem, {
+			  auto: 6000,
+			});
+		  
+
+			function DropDown(el) {
+				this.dd = el;
+				this.initEvents();
+			}
+			DropDown.prototype = {
+				initEvents : function() {
+					var obj = this;
+
+					obj.dd.on('click', function(event){
+						$(this).toggleClass('active');
+						event.stopPropagation();
+					});	
+				}
+			}
+
+			$(function() {
+				var dd = new DropDown( $('#dd') );
+
+				$(document).click(function() {
+					// all dropdowns
+					$('.wrapper-dropdown-5').removeClass('active');
+				});
+
+			}); 
+
 		if (!Modernizr.input.placeholder){
 		      $('input[placeholder], textarea[placeholder]').placeholder();
 		}
+
+		$("#calcWrap .dropdown li a").click(function(e){
+			e.preventDefault();
+		});
+
+		</script>
+			<!-- FORM SCRIPT -->
+		<script type="text/javascript">
+		  <!--//--><![CDATA[//><!--
+		  $(document).ready(function() {
+		    $('form#contact-us').submit(function() {
+		      $('form#contact-us .error').remove();
+		      var hasError = false;
+		      $('.requiredField').each(function() {
+		        if($.trim($(this).val()) == '') {
+		          var labelText = $(this).prev('label').text();
+		          $(this).parent().append('<span style="display: block;" class="error">You forgot to enter your '+labelText+'.</span>');
+		          $(this).addClass('inputError');
+		          hasError = true;
+		        } else if($(this).hasClass('email')) {
+		          var emailReg = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
+		          if(!emailReg.test($.trim($(this).val()))) {
+		            var labelText = $(this).prev('label').text();
+		            $(this).parent().append('<span class="error">Sorry! You\'ve entered an invalid '+labelText+'.</span>');
+		            $(this).addClass('inputError');
+		            hasError = true;
+		          }
+		        }
+		      });
+		      if(!hasError) {
+		        var formInput = $(this).serialize();
+		        $.post($(this).attr('action'),formInput, function(data){
+		          $('form#contact-us').slideUp("fast", function() {          
+		            $(this).before('<p>Thanks for the message! We\'ll get back to you as soon as we can.</p>');
+		          });
+		        });
+		      }
+		      
+		      return false; 
+		    });
+		  });
+		  //-->!]]>
 		</script>
 		{{ "script.js" | asset_url | script_tag }}
 
