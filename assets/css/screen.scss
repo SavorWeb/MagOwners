@@ -248,6 +248,7 @@ blockquote {
 .slideshow {
 	background-color: $grey2;
 	position: relative;
+	z-index: 10;
 	.row {
 		margin-bottom: 0;
 	}
@@ -573,13 +574,13 @@ textarea:focus {
 
 /* GLOBALS */
 
-::selection {
-    background: transparent; 
-}
+// ::selection {
+//     background: transparent; 
+// }
 
-::-moz-selection {
-    background: transparent; 
-}
+// ::-moz-selection {
+//     background: transparent; 
+// }
 
 #dd {
 	margin-bottom: 5px;

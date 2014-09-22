@@ -1,7 +1,9 @@
 {
   "autoPrefixer": null,
-  "convertHtmlExtension": ".html",
-  "convertHtmlOutput": null,
+  "convertHtml": {
+    "extension": ".html",
+    "relativePaths": false
+  },
   "customRuby": false,
   "customRubyPath": null,
   "customTodos": null,
@@ -10,14 +12,18 @@
   "followLeader": true,
   "ftpSettings": null,
   "gitHubPages": null,
-  "ignoreDir": "ignore",
+  "ignoreDir": [
+    "ignore"
+  ],
   "less": null,
   "lintScripts": false,
   "modelSource": null,
   "optimiseImages": true,
   "optimiseSVG": true,
   "password": null,
-  "preprocessorLocations": "assets",
+  "preprocessorLocations": [
+    "assets"
+  ],
   "preprocessorScriptOutput": "assets/js",
   "preprocessorStyleOutput": "assets/css",
   "projectDescription": "Sassaparilla",
